@@ -11,7 +11,7 @@ Model 1: One Block VGG Model
 - ReLU activation + HE weight initialization
 - 200x200 dimmensions
 - SGD, lr=0.001, momentum=0.9
-- batchsize:64
+- batchsize:32
 - epoch=20
 
 ```
@@ -35,6 +35,14 @@ Non-trainable params: 0
 _________________________________________________________________
 None
 ```
+
+Model 4: Three Blod VGG Model + Dropout (0.2/0.5)
+- Optimized with binary cross-entropy loss
+- ReLU activation + HE weight initialization
+- 200x200 dimmensions
+- SGD, lr=0.001, momentum=0.9
+- batchsize:32
+- epoch=20
 
 
 # Credits
