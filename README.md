@@ -43,6 +43,7 @@ Model 4: Three Blod VGG Model + Dropout (0.2/0.5)
 - SGD, lr=0.001, momentum=0.9
 - batchsize:32
 - epoch=20
+- Accuracy=91.023
 
 ```
 Model: "sequential_2"
@@ -81,6 +82,9 @@ Non-trainable params: 0
 _________________________________________________________________
 None
 ```
+
+![image](https://user-images.githubusercontent.com/44306479/119068960-0a123680-b99a-11eb-8c02-61dc80c2d16f.png)
+
 
 
 # Credits
