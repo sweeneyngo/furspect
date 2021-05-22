@@ -35,8 +35,14 @@ Non-trainable params: 0
 _________________________________________________________________
 None
 ```
+![1block](https://user-images.githubusercontent.com/44306479/119242340-dfe38480-bb11-11eb-8170-a80c9c66682c.png)
 
-Model 4: Three Blod VGG Model + Dropout (0.2/0.5)
+# Visualizations
+![filtersoneblock2](https://user-images.githubusercontent.com/44306479/119242364-f8ec3580-bb11-11eb-8c66-2fc67870b5e9.png)
+![conv2d_layer_oneblock](https://user-images.githubusercontent.com/44306479/119242368-fb4e8f80-bb11-11eb-9029-fcd8859fc67e.png)
+![featuremaps](https://user-images.githubusercontent.com/44306479/119242369-fc7fbc80-bb11-11eb-8679-96f2d32518d7.png)
+
+Model 4: Three Block VGG Model + Dropout (0.2/0.5)
 - Optimized with binary cross-entropy loss
 - ReLU activation + HE weight initialization
 - 200x200 dimmensions
@@ -84,7 +90,6 @@ None
 ```
 
 ![index](https://user-images.githubusercontent.com/44306479/119069028-2d3ce600-b99a-11eb-8f44-e466927ec7ac.png)
-
 
 
 
