@@ -13,7 +13,7 @@ Model 1: One Block VGG Model
 - SGD, lr=0.001, momentum=0.9
 - batchsize:32
 - epoch=20
-
+- dense=128
 ```
 Model: "sequential"
 _________________________________________________________________
@@ -52,6 +52,7 @@ Model 4: Three Block VGG Model + Dropout (0.2/0.5)
 - batchsize:32
 - epoch=20
 - Accuracy=91.023
+- dense=128
 
 ```
 Model: "sequential_2"
