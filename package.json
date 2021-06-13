@@ -1,0 +1,25 @@
+{
+  "name": "furspect",
+  "version": "1.0.0",
+  "description": "# Purpose to scientifically and mathematically determine if it's a furry or not.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sweeneyngo/furspect.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sweeneyngo/furspect/issues"
+  },
+  "homepage": "https://github.com/sweeneyngo/furspect#readme",
+  "devDependencies": {
+    "husky": "^6.0.0",
+    "mocha": "^9.0.0"
+  }
+}

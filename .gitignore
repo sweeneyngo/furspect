@@ -5,3 +5,9 @@ dataset.zip
 large_dataset
 large_dataset/*
 *.h5
+
+
+# node
+node_modules
+node_modules/
+node_modules/*
