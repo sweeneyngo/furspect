@@ -1,3 +1,7 @@
 dataset
 dataset/*
 dataset.zip
+*.zip
+large_dataset
+large_dataset/*
+*.h5
