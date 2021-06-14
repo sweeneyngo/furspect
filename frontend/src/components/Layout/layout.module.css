@@ -1,0 +1,37 @@
+.layout-styles {
+    color: #232129;
+    padding: 0;
+    font-family: '-apple-system, Roboto, sans-serif, serif';
+}
+.page-styles {
+    color: #232129;
+    padding: 96px;
+    font-family: '-apple-system, Roboto, sans-serif, serif';
+}
+.header {
+    color: #232129;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.header-styles {
+    margin-top: 0;
+    margin-bottom: 64px;
+    max-width: 320;
+}
+
+.heading-accent-styles {
+    color: #663399;
+}
+
+.paragraph-styles {
+    margin-bottom: 48px;
+}
+
+.code-styles {
+    color: #8a6534;
+    padding: 4px;
+    background-color: #fff4db;
+    font-size: 1.25rem;
+    border-radius: 4;
+}
