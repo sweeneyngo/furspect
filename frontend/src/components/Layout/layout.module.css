@@ -35,3 +35,64 @@
     font-size: 1.25rem;
     border-radius: 4;
 }
+
+.input-styles {
+    color: #8a6534;
+    padding: 4px;
+    margin: 4px;
+    background-color: #fff4db;
+    font-size: 1.25rem;
+    border-radius: 4px;
+    border: 1px solid white;
+    display: none;
+}
+
+.file-styles {
+    padding: 4px;
+    margin: 4px;
+    background-color: #fff4db;
+    font-size: 1.25rem;
+    border-radius: 4px;
+    border: 1px solid white;
+}
+
+
+.circular-chart {
+    display: block;
+    margin: 10px auto;
+    max-width: 80%;
+    max-height: 250px;
+}
+
+.circle-bg {
+    fill: none;
+    stroke: #eee;
+    stroke-width: 3.8;
+}
+
+.circle {
+    fill: none;
+    stroke-width: 2.8;
+    stroke-linecap: round;
+    animation: progress 1s ease-out forwards;
+}
+
+@keyframes progress {
+    0% {
+        stroke-dasharray: 0 100;
+    }
+}
+
+.circular-chart.orange .circle {
+stroke: #ff9f00;
+}
+
+.percentage {
+    fill: #666;
+    font-family: sans-serif;
+    font-size: 0.5em;
+    color: grey;
+    text-anchor: middle;
+    stroke: none;
+}
+
