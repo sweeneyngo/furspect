@@ -1,10 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../utils/Button/Button';
-const Upload = () => {
-    return <Button name="Upload" color="300" />;
+const Submit = () => {
+    return <Button name="Submit" color="700" />;
 };
 
-Upload.propTypes = {};
+Submit.propTypes = {};
 
-export default Upload;
+export default Submit;

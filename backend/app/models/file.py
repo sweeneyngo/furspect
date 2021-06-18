@@ -1,14 +1,7 @@
-from flask import Flask
-from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://misu:bristlerinseundefinedscamacquire02@localhost:5432/furspect"
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+from app import app
 
 db = SQLAlchemy(app)
-migrate = Migrate(app, db)
 
 class FileModel(db.Model):
     __tablename__ = 'files'
@@ -29,8 +22,3 @@ class FileModel(db.Model):
 
     def __repr__(self):
         return f"<File {self.name}>"
-        
-cors = CORS(app, resources={r"/": {"origins": "*"}})
-app.config['CORS_HEADERS'] = 'Content-Type'
-
-from app import routes

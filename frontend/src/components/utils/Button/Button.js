@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 const Button = ({ name, color }) => {
     return (
         <div
-            style={{ backgroundColor: color }}
-            className="w-36 h-12 text-xs shadow-md cursor-pointer hover:bg-blue-200 flex items-center justify-center text-white rounded-full"
+            className={`w-36 h-12 text-xs shadow-md bg-gray-${color} hover:bg-gray-400 transition duration-300 ease-in-out cursor-pointer flex items-center justify-center text-white rounded-full`}
         >
             {name}
         </div>

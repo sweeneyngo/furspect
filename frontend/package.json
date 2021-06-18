@@ -16,11 +16,17 @@
         "test": "mocha"
     },
     "dependencies": {
+        "@fontsource/poppins": "^4.4.5",
+        "@fortawesome/fontawesome-svg-core": "^1.2.35",
+        "@fortawesome/free-solid-svg-icons": "^5.15.3",
+        "@fortawesome/react-fontawesome": "^0.1.14",
         "form-data": "^4.0.0",
         "gatsby": "^3.6.2",
+        "gatsby-plugin-fontawesome-css": "^1.1.0",
         "gatsby-plugin-gatsby-cloud": "^2.7.1",
         "gatsby-plugin-image": "^1.7.1",
         "gatsby-plugin-sharp": "^3.7.1",
+        "gatsby-plugin-web-font-loader": "^1.0.4",
         "gatsby-source-filesystem": "^3.7.1",
         "react": "^17.0.1",
         "react-dom": "^17.0.1"

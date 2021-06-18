@@ -1,23 +1,27 @@
 .layout-styles {
     color: #232129;
+    background-color: #f9f9f9;
     padding: 0;
-    font-family: '-apple-system, Roboto, sans-serif, serif';
+    font-family: 'Poppins, -apple-system, Roboto, sans-serif, serif';
 }
 .page-styles {
     color: #232129;
-    padding: 96px;
-    font-family: '-apple-system, Roboto, sans-serif, serif';
+    padding: 15rem;
+    font-family: 'Poppins, -apple-system, Roboto, sans-serif, serif';
+    position: relative;
 }
 .header {
     color: #232129;
     font-size: 2rem;
     font-weight: bold;
+    font-family: 'Poppins, -apple-system, Roboto, sans-serif, serif';
 }
 
 .header-styles {
     margin-top: 0;
     margin-bottom: 64px;
     max-width: 320;
+    font-family: 'Poppins, -apple-system, Roboto, sans-serif, serif';
 }
 
 .heading-accent-styles {
@@ -45,6 +49,7 @@
     border-radius: 4px;
     border: 1px solid white;
     display: none;
+    font-family: 'Poppins, -apple-system, Roboto, sans-serif, serif';
 }
 
 .file-styles {
@@ -54,6 +59,7 @@
     font-size: 1.25rem;
     border-radius: 4px;
     border: 1px solid white;
+    font-family: 'Poppins, -apple-system, Roboto, sans-serif, serif';
 }
 
 
@@ -62,6 +68,8 @@
     margin: 10px auto;
     max-width: 80%;
     max-height: 250px;
+    background-color: #f9f9f9;
+    font-family: 'Poppins, -apple-system, Roboto, sans-serif, serif';
 }
 
 .circle-bg {
@@ -94,5 +102,100 @@ stroke: #ff9f00;
     color: grey;
     text-anchor: middle;
     stroke: none;
+    font-family: 'Poppins, -apple-system, Roboto, sans-serif, serif';
 }
 
+.radial-grid {
+    background-image: radial-gradient(black 1px, transparent 0);
+    background-size: 0.5rem 0.5rem;
+    width: 15rem;
+    height: 15rem;
+    position: absolute;
+    right: 8rem;
+    transform: translateY(50%);
+    z-index: 0;
+}
+
+.typewriter {
+    margin: 10rem 0 4rem 0;
+    display: inline-block;
+    text-align: center;
+}
+.type {
+
+    width: auto;
+    font-size: 2.5rem;
+    color: gray;
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .05em solid rgba(175, 175, 175, 0.2); /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: 0; /* Adjust as needed */
+    animation: 
+        typing 2.5s steps(18, end),
+        blink-caret .75s step-end infinite;
+}
+  
+/* The typing effect */
+@keyframes typing {
+from { width: 0 }
+to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+from, to { border-color: transparent }
+50% { border-color: gray; }
+}
+
+.step-styles {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10rem;
+    align-items: center;
+    max-width: 960px;
+    font-size: 18px;
+    line-height: 1.2em;
+    color: #333;
+    position: relative;
+    cursor: default;
+    min-width: 800px;
+}
+  
+.step-styles::before{
+    content: '';
+    display: block;
+    position: absolute;
+    width: 50%;
+    top: 29px;
+    left: 23%;
+    height: 1px;
+    border-top: 2px dotted #000;
+    z-index: 1;
+}
+
+.step-circle {
+    width: calc(33%);
+    line-height: 1.4em;
+    font-size: 16px;
+    text-decoration: none;
+    color: inherit;
+    font-size: inherit;
+    margin-bottom: 15px;
+    vertical-align: top;
+    border-radius: 50%;
+    width: 4rem;
+    height: 4rem;
+    background: #fff;
+    color: #000;
+    display: inline-block;
+    border: 2px solid #000;
+    overflow: visible;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 0 0 3px #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
