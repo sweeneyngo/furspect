@@ -26,9 +26,12 @@ const ViewPage = () => {
         axios(config)
             .then((resp) => {
                 console.log(resp);
-                console.log(resp.data);
+                console.log(resp.data.contents);
+                console.log(resp.data.files);
 
-                if (resp.status == 200) setFiles([...resp.data['files']]);
+                if (resp.status == 200) {
+                    setFiles([...resp.data.files]);
+                }
                 // if (resp.status === 200)
                 //     setAccuracy(Number(1.0 - resp.data.data[0]) * 100);
                 return resp.data;
@@ -47,7 +50,7 @@ const ViewPage = () => {
                         >
                             <Card
                                 file={file}
-                                url="https://i1.sndcdn.com/avatars-000003750750-cvh7oi-t500x500.jpg"
+                                url={`https://furspect-media.s3.amazonaws.com/${file.hexS3}`}
                                 name={file.name}
                                 width={file.width}
                                 height={file.height}
@@ -56,7 +59,7 @@ const ViewPage = () => {
                                 file={file}
                                 name={file.name}
                                 icon={faHeart}
-                                subcaption={file.favcount}
+                                subcaption={'' + file.favcount}
                                 caption="love!"
                             />
                         </div>

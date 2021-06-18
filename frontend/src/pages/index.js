@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../components/Layout/layout';
 import Display from '../components/Display/Display';
-import Upload from '../components/Upload/Upload';
-import Inspect from '../components/Inspect/Inspect';
-import Submit from '../components/Submit/Submit';
-
+import Button from '../components/utils/Button/Button';
+import Radial from '../components/utils/Radial/Radial';
 import axios from 'axios';
 import FormData from 'form-data';
 import {
@@ -21,6 +19,7 @@ import {
     stepStyles,
     stepCircle,
     type,
+    animatedCircle,
 } from '../components/Layout/layout.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -31,9 +30,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import { Link, useStaticQuery, graphql } from 'gatsby';
-
-// import { StaticImage } from 'gatsby-plugin-image';
-// import { upload, getFiles } from '../utils/http';
 
 // markup
 const IndexPage = () => {
@@ -47,7 +43,8 @@ const IndexPage = () => {
         width: 0,
         height: 0,
     });
-    const [accuracy, setAccuracy] = useState(0.0);
+    const [acc, setAccuracy] = useState(0.0);
+    const [step, setStep] = useState('Upload');
 
     const readFile = (input) => {
         if (input.target.files && input.target.files[0]) {
@@ -67,6 +64,7 @@ const IndexPage = () => {
                         selection: input.target.files[0],
                         url: URL.createObjectURL(input.target.files[0]),
                     });
+                    setStep('Inspect');
                 };
             };
             reader.readAsDataURL(input.target.files[0]);
@@ -105,18 +103,22 @@ const IndexPage = () => {
                 console.log(resp);
                 console.log(resp.data);
 
-                if (resp.status === 200)
+                if (resp.status === 200) {
                     setAccuracy(Number(1.0 - resp.data.data[0]) * 100);
+                    console.log(acc);
+                    setStep('Submit');
+                }
                 return resp.data;
             })
             .catch((error) => console.log(error));
     };
     const handleSubmit = () => {
-        let name = 'TestFile';
-        let accuracy = 10;
-        let width = 200;
-        let height = 200;
-        let favcount = 5;
+        console.log(acc);
+        let name = image.selection.name;
+        let accuracy = acc;
+        let width = image.width;
+        let height = image.height;
+        let favcount = 0;
         let data = new FormData();
 
         if (!image.selection) {
@@ -152,6 +154,7 @@ const IndexPage = () => {
                     ...image,
                     progress: false,
                 });
+                setStep('Upload');
                 console.log(resp);
                 console.log(resp.data);
 
@@ -160,45 +163,6 @@ const IndexPage = () => {
                 return resp.data;
             })
             .catch((error) => console.log(error));
-
-        // alert('Hello!');
-        // let currentFile = image.selecton && image.selection[0];
-        // setImage({
-        //     ...image,
-        //     progress: 0,
-        //     file: currentFile,
-        // });
-        // upload(currentFile, (event) => {
-        //     setImage({
-        //         ...image,
-        //         progress: Math.round((100 * event.loaded) / event.total),
-        //     });
-        // })
-        //     .then((response) => {
-        //         setImage({
-        //             ...image,
-        //             message: response.data.message,
-        //         });
-        //         return getFiles();
-        //     })
-        //     .then((files) => {
-        //         setImage({
-        //             ...image,
-        //             fileData: files.data,
-        //         });
-        //     })
-        //     .catch(() => {
-        //         setImage({
-        //             ...image,
-        //             progress: 0,
-        //             message: 'Could not upload the file!',
-        //             file: undefined,
-        //         });
-        //     });
-        // setImage({
-        //     ...image,
-        //     selection: null,
-        // });
     };
 
     useEffect(() => {
@@ -252,20 +216,29 @@ const IndexPage = () => {
 
             <div className="flex items-center justify-center">
                 <div className={stepStyles}>
-                    <div id="step-one" className={stepCircle}>
-                        <FontAwesomeIcon icon={faCloudUploadAlt} />
+                    <div className="relative flex items-center justify-center overflow-none w-16 h-16">
+                        <div id="step-one" className={stepCircle}>
+                            <FontAwesomeIcon icon={faCloudUploadAlt} />
+                        </div>
+                        {step == 'Upload' && <Radial />}
                         <h4 className="text-xs text-gray-500 absolute top-16">
                             upload
                         </h4>
                     </div>
-                    <div id="step-two" className={stepCircle}>
-                        <FontAwesomeIcon icon={faSearch} />
+                    <div className="relative flex items-center justify-center overflow-none w-16 h-16">
+                        <div id="step-one" className={stepCircle}>
+                            <FontAwesomeIcon icon={faSearch} />
+                        </div>
+                        {step == 'Inspect' && <Radial />}
                         <h4 className="text-xs text-gray-500 absolute top-16">
                             inspect
                         </h4>
                     </div>
-                    <div id="step-three" className={stepCircle}>
-                        <FontAwesomeIcon icon={faUpload} />
+                    <div className="relative flex items-center justify-center overflow-none w-16 h-16">
+                        <div id="step-one" className={stepCircle}>
+                            <FontAwesomeIcon icon={faUpload} />
+                        </div>
+                        {step == 'Submit' && <Radial />}
                         <h4 className="text-xs text-gray-500 absolute top-16">
                             submit
                         </h4>
@@ -280,22 +253,41 @@ const IndexPage = () => {
                     className="my-3 h-72 flex-col flex items-center justify-center"
                     disabled={!image.selection}
                 >
-                    <label htmlFor="file-upload">
-                        <Upload />
+                    <label
+                        className="mb-5"
+                        htmlFor="file-upload"
+                        style={{
+                            pointerEvents: step == 'Upload' ? '' : 'none',
+                            opacity: step == 'Upload' ? 1 : 0.2,
+                        }}
+                    >
+                        <Button name="Upload" color="500" />
                     </label>
-                    <div className="w-24 mb-5"></div>
                     <input
                         id="file-upload"
                         className={inputStyles}
                         type="file"
                         onChange={readFile}
                     />
-                    <div onClick={handleInspect}>
-                        <Inspect />
+                    <div
+                        className="mb-5"
+                        onClick={handleInspect}
+                        style={{
+                            pointerEvents: step == 'Inspect' ? '' : 'none',
+                            opacity: step == 'Inspect' ? 1 : 0.2,
+                        }}
+                    >
+                        <Button name="Inspect" color="600" />
                     </div>
-                    <div className="w-24 mb-5"></div>
-                    <div onClick={handleSubmit}>
-                        <Submit />
+                    <div
+                        onClick={handleSubmit}
+                        className="wmb-5"
+                        style={{
+                            pointerEvents: step == 'Submit' ? '' : 'none',
+                            opacity: step == 'Submit' ? 1 : 0.2,
+                        }}
+                    >
+                        <Button name="Submit" color="800" />
                     </div>
                 </div>
 
@@ -328,29 +320,22 @@ const IndexPage = () => {
                                 />
                                 <path
                                     className={circle}
-                                    strokeDasharray={`${accuracy}, 100`}
+                                    strokeDasharray={`${acc}, 100`}
                                     d="M18 2.0845
           a 15.9155 15.9155 0 0 1 0 31.831
           a 15.9155 15.9155 0 0 1 0 -31.831"
                                 />
                                 <text
-                                    x={
-                                        accuracy.toFixed(0) >= 10
-                                            ? '13.5'
-                                            : '15'
-                                    }
+                                    x={acc.toFixed(0) >= 10 ? '13.5' : '15'}
                                     y="20.35"
                                     className={percentage}
                                 >
-                                    {accuracy
+                                    {acc
                                         .toFixed(2)
-                                        .slice(
-                                            0,
-                                            accuracy.toFixed(2).indexOf('.')
-                                        )}
+                                        .slice(0, acc.toFixed(2).indexOf('.'))}
                                 </text>
                                 <text
-                                    x={accuracy.toFixed(0) >= 10 ? '19' : '17'}
+                                    x={acc.toFixed(0) >= 10 ? '19' : '17'}
                                     y="20.35"
                                     style={{
                                         stroke: 'none',
@@ -358,11 +343,9 @@ const IndexPage = () => {
                                         fill: 'rgba(156, 163, 175, 1)',
                                     }}
                                 >
-                                    {accuracy
+                                    {acc
                                         .toFixed(2)
-                                        .slice(
-                                            accuracy.toFixed(2).indexOf('.')
-                                        )}
+                                        .slice(acc.toFixed(2).indexOf('.'))}
                                     %
                                 </text>
                             </svg>
