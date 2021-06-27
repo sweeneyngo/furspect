@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../components/Layout/layout';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import { headingStyles } from '../components/Layout/layout.module.css';
 import Card from '../components/utils/Card/Card';
 import Tooltip from '../components/utils/Tooltip/Tooltip';
 
@@ -11,8 +10,36 @@ import axios from 'axios';
 const ViewPage = () => {
     const [files, setFiles] = useState([]);
     const [image, showImage] = useState(false);
+    const handleLove = (file) => {
+        alert(JSON.stringify(file, null, 2));
+        console.log(file);
+        const config = {
+            method: 'patch',
+            url: 'http://127.0.0.1:5000/files',
+            data: file,
+            headers: {
+                'User-Agent': 'Axios - console app',
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': `application/json`,
+            },
+        };
 
-    useEffect(() => {
+        axios(config)
+            .then((resp) => {
+                if (resp.status === 200) {
+                    console.log(resp.data);
+                    files.forEach((file) => {
+                        if (file['hexS3'] == resp.data['hexS3'])
+                            file['favcount'] = resp.data['favcount'];
+                    });
+                    setFiles([...files]);
+                }
+                return resp.data;
+            })
+            .catch((error) => console.log(error));
+    };
+
+    const retrieveFiles = () => {
         const config = {
             method: 'get',
             url: 'http://127.0.0.1:5000/files',
@@ -27,7 +54,6 @@ const ViewPage = () => {
             .then((resp) => {
                 console.log(resp);
                 console.log(resp.data.contents);
-                console.log(resp.data.files);
 
                 if (resp.status == 200) {
                     setFiles([...resp.data.files]);
@@ -37,16 +63,21 @@ const ViewPage = () => {
                 return resp.data;
             })
             .catch((error) => console.log(error));
+    };
+
+    useEffect(() => {
+        retrieveFiles();
     }, []);
+
     return (
         <Layout pageTitle="view">
-            <h1 className={headingStyles}>
+            <h1>
                 A look into other percentages.
                 <div className="py-10 grid grid-cols-2 gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-5">
                     {files.map((file) => (
                         <div
                             className="flex flex-col shadow-md rounded-b-lg"
-                            key={file}
+                            key={file.hexS3}
                         >
                             <Card
                                 file={file}
@@ -62,6 +93,7 @@ const ViewPage = () => {
                                 accuracy={file.accuracy}
                                 subcaption={'' + file.favcount}
                                 caption="love!"
+                                handleClick={() => handleLove(file)}
                             />
                         </div>
                     ))}

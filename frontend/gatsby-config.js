@@ -2,6 +2,7 @@ module.exports = {
     siteMetadata: {
         title: 'furspect',
     },
+    flags: { PRESERVE_WEBPACK_CACHE: true },
     plugins: [
         'gatsby-plugin-gatsby-cloud',
         'gatsby-plugin-postcss',
