@@ -28,8 +28,10 @@ import {
     faSearch,
     faCloudUploadAlt,
 } from '@fortawesome/free-solid-svg-icons';
-
 import { Link, useStaticQuery, graphql } from 'gatsby';
+import { ResponsiveBar } from '@nivo/bar';
+import { ResponsiveHeatMap } from '@nivo/heatmap';
+import { ResponsivePie } from '@nivo/pie';
 
 // markup
 const IndexPage = () => {
@@ -45,6 +47,25 @@ const IndexPage = () => {
     });
     const [acc, setAccuracy] = useState(0.0);
     const [step, setStep] = useState('Upload');
+    const [nivo, setNivo] = useState([]);
+
+    const nivodata = [
+        {
+            country: 'AD',
+            'hot dog': 66,
+            'hot dogColor': 'hsl(317, 70%, 50%)',
+            burger: 24,
+            burgerColor: 'hsl(18, 70%, 50%)',
+            sandwich: 180,
+            sandwichColor: 'hsl(107, 70%, 50%)',
+            kebab: 25,
+            kebabColor: 'hsl(25, 70%, 50%)',
+            fries: 44,
+            friesColor: 'hsl(80, 70%, 50%)',
+            donut: 153,
+            donutColor: 'hsl(108, 70%, 50%)',
+        },
+    ];
 
     const readFile = (input) => {
         if (input.target.files && input.target.files[0]) {
@@ -104,7 +125,9 @@ const IndexPage = () => {
                 console.log(resp.data);
 
                 if (resp.status === 200) {
-                    setAccuracy(Number(1.0 - resp.data.data[0]) * 100);
+                    setAccuracy(Number(resp.data.data) * 100);
+                    setNivo(resp.data.nivo);
+                    console.log(resp.data.nivo);
                     console.log(acc);
                     setStep('Submit');
                 }
@@ -297,6 +320,7 @@ const IndexPage = () => {
                         url={image.url}
                         width={image.width}
                         height={image.height}
+                        accuracy={acc}
                     />
                     {image.progress && (
                         <span className="absolute flex h-36 w-36">
@@ -354,41 +378,58 @@ const IndexPage = () => {
                 </div>
             </div>
 
-            <div className="mt-36">
-                <h4 className={header}>analysis</h4>
-                <p className="text-gray-500 mt-2 mb-9">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                    occaecat cupidatat non proident, sunt in culpa qui officia
-                    deserunt mollit anim id est laborum. Lorem ipsum dolor sit
-                    amet, consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad
-                    minim veniam, quis nostrud exercitation ullamco laboris nisi
-                    ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                    reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id
-                    est laborum. Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis
-                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                    commodo consequat. Duis aute irure dolor in reprehenderit in
-                    voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                    Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum. Lorem
-                    ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                    irure dolor in reprehenderit in voluptate velit esse cillum
-                    dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                    cupidatat non proident, sunt in culpa qui officia deserunt
-                    mollit anim id est laborum.
-                </p>
+            <div className="border-gray-200 relative border-b-2" />
+            <div className="text-gray-500 my-1 text-xs flex flex-col items-center justify-center">
+                scroll down
+                <div className="pb-0 text-gray-400">
+                    <FontAwesomeIcon icon={faChevronDown} />
+                </div>
+            </div>
+            <div className="mt-24">
+                <div className="h-96">
+                    <ResponsiveBar
+                        data={nivo}
+                        keys={['probability']}
+                        indexBy="class"
+                        margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+                        padding={0.3}
+                        width={700}
+                        groupMode="grouped"
+                        valueScale={{ type: 'linear' }}
+                        indexScale={{ type: 'band', round: true }}
+                        colors={{ scheme: 'set2' }}
+                        borderColor={{
+                            from: 'color',
+                            modifiers: [['darker', 1.6]],
+                        }}
+                        axisTop={null}
+                        axisRight={null}
+                        axisBottom={{
+                            tickSize: 5,
+                            tickPadding: 5,
+                            tickRotation: 0,
+                            legend: 'class',
+                            legendPosition: 'middle',
+                            legendOffset: 32,
+                        }}
+                        axisLeft={{
+                            tickSize: 5,
+                            tickPadding: 5,
+                            tickRotation: 0,
+                            legendPosition: 'middle',
+                            legendOffset: -40,
+                        }}
+                        labelSkipWidth={12}
+                        labelSkipHeight={12}
+                        labelTextColor={{
+                            from: 'color',
+                            modifiers: [['darker', 1.6]],
+                        }}
+                        animate={true}
+                        motionStiffness={90}
+                        motionDamping={15}
+                    />
+                </div>
             </div>
         </Layout>
     );

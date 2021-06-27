@@ -59,6 +59,7 @@ const ViewPage = () => {
                                 file={file}
                                 name={file.name}
                                 icon={faHeart}
+                                accuracy={file.accuracy}
                                 subcaption={'' + file.favcount}
                                 caption="love!"
                             />

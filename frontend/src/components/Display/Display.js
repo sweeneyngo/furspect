@@ -5,7 +5,7 @@ import { faMinusCircle } from '@fortawesome/free-solid-svg-icons';
 import Card from '../utils/Card/Card';
 import Tooltip from '../utils/Tooltip/Tooltip';
 
-const Display = ({ file, url, width, height }) => {
+const Display = ({ file, url, width, height, accuracy }) => {
     return (
         <div className="w-full shadow-md rounded-b-lg">
             <Card
@@ -19,6 +19,7 @@ const Display = ({ file, url, width, height }) => {
                 file={file}
                 name={file ? file.name : ''}
                 icon={faMinusCircle}
+                accuracy={accuracy ? `${accuracy}` : ''}
                 subcaption=""
                 caption="delete!"
             />
@@ -31,6 +32,7 @@ Display.propTypes = {
     url: PropTypes.string,
     width: PropTypes.number,
     height: PropTypes.number,
+    accuracy: PropTypes.number,
 };
 
 export default Display;

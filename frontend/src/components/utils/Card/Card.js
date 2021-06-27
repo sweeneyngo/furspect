@@ -47,7 +47,8 @@ const Card = ({ file, url, name, width, height }) => {
                     </span>
                     <img className={cardContent} src={url} alt="Modal image" />
                     <div className={cardCaption}>
-                        {file && `${name} (${width}x${height})`}
+                        {file &&
+                            `${name} ${file.accuracy}% (${width}x${height})`}
                     </div>
                 </div>
             </div>
