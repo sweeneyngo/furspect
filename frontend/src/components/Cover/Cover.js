@@ -1,13 +1,11 @@
 import React from 'react';
 import { radialGrid } from '../../components/Layout/layout.module.css';
+import rabbit640 from '../../images/rabbit640.png';
 
 const Cover = () => {
     return (
         <div className="border-gray-200 relative border-b-2 overflow-hidden">
-            <img
-                className="absolute inset-y-0 right-0 z-10"
-                src={'/static/rabbit640.png'}
-            />
+            <img className="absolute inset-y-0 right-0 z-10" src={rabbit640} />
             <div className={radialGrid}></div>
             <div className="flex relative">
                 <div className="flex flex-col">

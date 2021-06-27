@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Layout from '../components/Layout/layout';
+import { Layout, Tooltip, Card } from '../components';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import Card from '../components/utils/Card/Card';
-import Tooltip from '../components/utils/Tooltip/Tooltip';
-
 import axios from 'axios';
 // markup
 

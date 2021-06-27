@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import Layout from '../components/Layout/layout';
-import Display from '../components/Display/Display';
-import Radial from '../components/utils/Radial/Radial';
-import Cover from '../components/Cover/Cover';
-import Chevron from '../components/Chevron/Chevon';
-import Spinner from '../components/Spinner/Spinner';
-import Bar from '../components/Nivo/Bar';
-import ColorIcon from '../components/ColorIcon/ColorIcon';
-import Button from '../components/utils/Button/Button';
-
+import {
+    Layout,
+    Display,
+    Radial,
+    Cover,
+    Chevron,
+    Spinner,
+    Bar,
+    ColorIcon,
+    Button,
+} from '../components';
+import crossentropy from '../images/crossentropy.png';
 import axios from 'axios';
 import FormData from 'form-data';
 import {
@@ -18,13 +20,7 @@ import {
     stepCircle,
     type,
 } from '../components/Layout/layout.module.css';
-import {
-    cardModal,
-    cardClose,
-    cardContent,
-    cardCaption,
-} from '../components/utils/Card/card.module.css';
-
+import { cardModal } from '../components/utils/Card/card.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faUpload,
@@ -426,7 +422,7 @@ const IndexPage = () => {
 
             <div className="flex w-full">
                 <div className="p-3 w-full text-xs text-gray-400 shadow-md text-right">
-                    <img src="/static/crossentropy.png" />
+                    <img src={crossentropy} />
                 </div>
                 <div className="p-3 w-1/6 flex text-center items-end justify-end text-xs text-gray-400 shadow-md">
                     Want to learn more? Visit my about page, for redirects and
@@ -435,7 +431,7 @@ const IndexPage = () => {
             </div>
             <div className="p-3 w-full text-xs text-gray-400 shadow-md text-right">
                 {nivo.map((className) => (
-                    <span>
+                    <span key={className}>
                         {JSON.stringify(className, (key, value) =>
                             key !== 'probabilityColor' ? value : undefined
                         )}
