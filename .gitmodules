@@ -1,0 +1,3 @@
+[submodule "e621_downloader"]
+	path = e621_downloader
+	url = https://github.com/McSib/e621_downloader.git
