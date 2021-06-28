@@ -5,7 +5,7 @@ const AboutPage = () => {
     return (
         <Layout pageTitle="about">
             <h1>
-                Why did I create this?
+                Why did I create this? No idea.
                 <br />
             </h1>
         </Layout>
