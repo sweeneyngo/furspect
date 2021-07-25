@@ -387,20 +387,22 @@ const IndexPage = () => {
                         </div>
                     </div>
                 </div>
-                <div className="flex justify-center items-center w-full">
-                    <Display
-                        file={image.selection}
-                        url={image.url}
-                        width={image.width}
-                        height={image.height}
-                        accuracy={acc}
-                        handleClick={handleDelete}
-                    />
-                    {image.progress && (
-                        <span className="absolute flex h-36 w-36">
-                            <span className="animate-ping absolute h-full w-full rounded-full bg-gray-400 opacity-75"></span>
-                        </span>
-                    )}
+                <div className="flex justify-center items-center">
+                    <div className="flex w-96 justify-center items-center">
+                        <Display
+                            file={image.selection}
+                            url={image.url}
+                            width={image.width}
+                            height={image.height}
+                            accuracy={acc}
+                            handleClick={handleDelete}
+                        />
+                        {image.progress && (
+                            <span className="absolute flex h-36 w-36">
+                                <span className="animate-ping absolute h-full w-full rounded-full bg-gray-400 opacity-75"></span>
+                            </span>
+                        )}
+                    </div>
                 </div>
                 <div className="flex justify-center items-center text-white">
                     <div className="flex flex-nowrap">

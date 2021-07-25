@@ -62,7 +62,6 @@
     font-family: 'Poppins, -apple-system, Roboto, sans-serif, serif';
 }
 
-
 .circular-chart {
     display: block;
     margin: 10px auto;
@@ -92,7 +91,7 @@
 }
 
 .circular-chart.orange .circle {
-stroke: #ff9f00;
+    stroke: #ff9f00;
 }
 
 .percentage {
@@ -108,11 +107,12 @@ stroke: #ff9f00;
 .radial-grid {
     background-image: radial-gradient(black 1px, transparent 0);
     background-size: 0.5rem 0.5rem;
-    width: 15rem;
-    height: 15rem;
+    width: 25rem;
+    height: 25rem;
     position: absolute;
-    right: 8rem;
-    transform: translateY(50%);
+    right: 15rem;
+    top: 15rem;
+    transform: translateY(0%);
     z-index: 0;
 }
 
@@ -122,30 +122,36 @@ stroke: #ff9f00;
     text-align: center;
 }
 .type {
-
     width: auto;
     font-size: 2.5rem;
     color: gray;
     overflow: hidden; /* Ensures the content is not revealed until the animation */
-    border-right: .05em solid rgba(175, 175, 175, 0.2); /* The typwriter cursor */
+    border-right: 0.05em solid rgba(175, 175, 175, 0.2); /* The typwriter cursor */
     white-space: nowrap; /* Keeps the content on a single line */
     margin: 0 auto; /* Gives that scrolling effect as the typing happens */
     letter-spacing: 0; /* Adjust as needed */
-    animation: 
-        typing 2.5s steps(18, end),
-        blink-caret .75s step-end infinite;
+    animation: typing 2.5s steps(18, end), blink-caret 0.75s step-end infinite;
 }
-  
+
 /* The typing effect */
 @keyframes typing {
-from { width: 0 }
-to { width: 100% }
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
 }
 
 /* The typewriter cursor effect */
 @keyframes blink-caret {
-from, to { border-color: transparent }
-50% { border-color: gray; }
+    from,
+    to {
+        border-color: transparent;
+    }
+    50% {
+        border-color: gray;
+    }
 }
 
 .step-styles {
@@ -161,14 +167,14 @@ from, to { border-color: transparent }
     cursor: default;
     min-width: 800px;
 }
-  
-.step-styles::before{
+
+.step-styles::before {
     content: '';
     display: block;
     position: absolute;
-    width: 50%;
+    width: 70%;
     top: 29px;
-    left: 23%;
+    left: 15%;
     height: 1px;
     border-top: 2px solid rgba(0, 0, 0, 0.397);
     z-index: 1;
