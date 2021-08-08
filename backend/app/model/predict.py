@@ -38,8 +38,6 @@ def predict_image(image):
                 metrics=['accuracy'])
   model.build(input_shape=(None, 224, 224, 3))
   model.load_weights('app/model/model_weights.h5')
-  # define new model
-  # model = load_model(os.path.join(os.getcwd(), 'app/model/furspect_best_2.h5'))
   res = model.predict(final, batch_size=10)
 
   classes = ['cane', 'cavallo', 'elefante', 'farfalla', 'furry', 'gallina', 'gatto', 'mucca', 'pecora', 'ragno', 'scoiattolo']

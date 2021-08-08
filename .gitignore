@@ -4,7 +4,6 @@ dataset.zip
 *.zip
 large_dataset
 large_dataset/*
-*.h5
 
 
 # node
@@ -17,3 +16,5 @@ node_modules/*
 .env.local
 .env.staging
 
+# mocha
+test-results/
