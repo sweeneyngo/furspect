@@ -18,3 +18,12 @@ node_modules/*
 
 # mocha
 test-results/
+
+# python
+env/
+
+# datasets
+furry/
+train/
+validation/
+raw-img/
