@@ -4,7 +4,10 @@ import rabbit640 from '../../images/rabbit640.png';
 
 const Cover = () => {
     return (
-        <div className="border-gray-200 relative border-b-2 h-screen overflow-hidden">
+        <div
+            data-testid="cover"
+            className="border-gray-200 relative border-b-2 h-screen overflow-hidden"
+        >
             <img src={rabbit640} className="absolute inset-y-0 right-0 z-10" />
             <div className={radialGrid}></div>
             <div className="flex relative">
