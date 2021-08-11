@@ -18,7 +18,7 @@ jobs:
       # The orb install-packages step will also automatically cache them for faster future runs.
       - node/install-packages:
           cache-path: ~/project/node_modules
-          override-ci-command: npm install
+          override-ci-command: npm run install:all
       - run:
           name: Run unit tests
           command: npm run test:frontend

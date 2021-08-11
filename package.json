@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test:frontend": "cd frontend && jest",
+    "install:all": "npm install && cd frontend && npm install",
     "prepare": "husky install"
   },
   "repository": {
