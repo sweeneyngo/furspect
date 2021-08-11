@@ -42,6 +42,8 @@ const IndexPage = () => {
     const [acc, setAccuracy] = useState(0.0);
     const [step, setStep] = useState('Upload');
     const [nivo, setNivo] = useState([]);
+    const [avatarSeed, setAvatarSeed] = useState('furspect');
+    const [avatarName, setAvatarName] = useState('Anonymous');
     const [submitModal, setSubmitModal] = useState(false);
     const [error, setError] = useState('');
 
@@ -178,38 +180,38 @@ const IndexPage = () => {
         data.append('color', color);
         data.append('displayName', displayName);
         data.append('file', image.selection, image.selection.name);
-
+        console.log(data);
         // console.log(JSON.stringify(info));
-        const config = {
-            method: 'post',
-            url: 'http://127.0.0.1:5000/files',
-            data: data,
-            headers: {
-                'User-Agent': 'Axios - console app',
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': `multipart/form-data`,
-            },
-        };
+        // const config = {
+        //     method: 'post',
+        //     url: 'http://127.0.0.1:5000/files',
+        //     data: data,
+        //     headers: {
+        //         'User-Agent': 'Axios - console app',
+        //         'Access-Control-Allow-Origin': '*',
+        //         'Content-Type': `multipart/form-data`,
+        //     },
+        // };
 
-        setImage({
-            ...image,
-            progress: true,
-        });
-        axios(config)
-            .then((resp) => {
-                setImage({
-                    ...image,
-                    progress: false,
-                });
-                setStep('Upload');
-                console.log(resp);
-                console.log(resp.data);
+        // setImage({
+        //     ...image,
+        //     progress: true,
+        // });
+        // axios(config)
+        //     .then((resp) => {
+        //         setImage({
+        //             ...image,
+        //             progress: false,
+        //         });
+        //         setStep('Upload');
+        //         console.log(resp);
+        //         console.log(resp.data);
 
-                // if (resp.status === 200)
-                //     setAccuracy(Number(1.0 - resp.data.data[0]) * 100);
-                return resp.data;
-            })
-            .catch((error) => console.log(error));
+        //         // if (resp.status === 200)
+        //         //     setAccuracy(Number(1.0 - resp.data.data[0]) * 100);
+        //         return resp.data;
+        //     })
+        //     .catch((error) => console.log(error));
     };
 
     const handleName = (e) => {
@@ -224,6 +226,19 @@ const IndexPage = () => {
         else setError(false);
     };
 
+    const handleAvatarSeed = () => {
+        let seed = [...Array(16)]
+            .map(() => Math.floor(Math.random() * 16).toString(16))
+            .join('');
+        setAvatarSeed(seed);
+        fetch('https://random-words-api.vercel.app/word')
+            .then((r) => r.json())
+            .then((response) => {
+                console.log(response[0]['pronunciation']);
+                setAvatarName(`${response[0]['pronunciation']}`);
+            })
+            .catch((err) => console.log(err));
+    };
     useEffect(() => {
         console.log(image);
     }, [image]);
@@ -332,6 +347,39 @@ const IndexPage = () => {
                                 </span>
                                 <div className="flex flex-col items-center justify-center h-full">
                                     <div className="mb-4">
+                                        <div className="flex items-center py-10">
+                                            <img
+                                                className="inline object-cover w-28 h-28 mr-2 rounded-full shadow-md p-2"
+                                                src={`https://avatars.dicebear.com/api/gridy/${avatarSeed}.svg`}
+                                                alt="Profile image"
+                                            />
+                                            <div className="px-3">
+                                                <div className=" flex items-center">
+                                                    <p className="text-gray-700 text-sm">
+                                                        {avatarName}
+                                                    </p>
+                                                </div>
+
+                                                <div className="flex">
+                                                    <button
+                                                        onClick={() =>
+                                                            handleAvatarSeed()
+                                                        }
+                                                        className="w-24 h-12 text-xs shadow-md bg-gray-600 hover:bg-gray-400 transition duration-300 ease-in-out cursor-pointer flex items-center justify-center text-white"
+                                                    >
+                                                        Login
+                                                    </button>
+                                                    <button
+                                                        onClick={() =>
+                                                            handleAvatarSeed()
+                                                        }
+                                                        className="w-24 h-12 text-xs shadow-md bg-gray-500 hover:bg-gray-400 transition duration-300 ease-in-out cursor-pointer flex items-center justify-center text-white"
+                                                    >
+                                                        Randomize
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <label
                                             className="block text-gray-700 text-sm font-bold mb-2"
                                             htmlFor="username"
