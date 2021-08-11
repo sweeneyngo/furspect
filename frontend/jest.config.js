@@ -13,5 +13,6 @@ module.exports = {
     },
     testURL: `http://localhost`,
     setupFiles: [`<rootDir>/loadershim.js`],
+    moduleFileExtensions: ['js', 'jsx'],
     testEnvironment: 'jsdom',
 };
