@@ -24,5 +24,7 @@
     "husky": "^6.0.0",
     "jest": "^27.0.6"
   },
-  "dependencies": {}
+  "dependencies": {
+    "react": "^17.0.2"
+  }
 }
