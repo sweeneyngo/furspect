@@ -4,7 +4,8 @@
   "description": "# Purpose to scientifically and mathematically determine if it's a furry or not.",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test:frontend": "cd frontend && jest",
+    "install:all": "npm install && cd frontend && npm install",
     "prepare": "husky install"
   },
   "repository": {
@@ -24,5 +25,7 @@
     "husky": "^6.0.0",
     "jest": "^27.0.6"
   },
-  "dependencies": {}
+  "dependencies": {
+    "react": "^17.0.2"
+  }
 }

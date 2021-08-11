@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: furspect-serving-deployment
+spec:
+  selector:
+    matchLabels:
+      app: furspect-serving-deployment
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: furspect-serving-deployment
+    spec:
+      containers:
+        - name: furspect-serving-deployment
+          image: gcr.io/tensorflow-serving-322508/furspect_serving@sha256:3acb5a21f3e7d6934e444d05285c578fb782e677e33df0c23bc558d2124b5379
+          ports:
+            - containerPort: 8501
+              name: restapi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: furspect-serving-service
+  name: furspect-serving-service
+spec:
+  ports:
+    - port: 8501
+      targetPort: 8501
+      name: restapi
+  selector:
+    app: furspect-serving-deployment
+  type: LoadBalancer

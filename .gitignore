@@ -27,3 +27,5 @@ furry/
 train/
 validation/
 raw-img/
+saved_model/
+
