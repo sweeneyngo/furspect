@@ -10,7 +10,7 @@ jobs:
     # These next lines define a Docker executor: https://circleci.com/docs/2.0/executor-types/
     # A list of available CircleCI Docker Convenience Images are available here: https://circleci.com/developer/images/image/cimg/node
     docker:
-      - image: cimg/base:latest
+      - image: cimg/node:16.6.0
     steps:
       # Checkout the code as the first step (alias for `git clone`)
       - checkout
