@@ -3,7 +3,15 @@ import PropTypes from 'prop-types';
 import { tooltipStyles, tooltipText } from './tooltip.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const Tooltip = ({ file, name, icon, accuracy, subcaption, caption }) => {
+const Tooltip = ({
+    file,
+    name,
+    icon,
+    accuracy,
+    subcaption,
+    caption,
+    handleClick,
+}) => {
     return (
         <div className="grid grid-cols-4 items-center px-2 bg-gray-200 inset-x-0 bottom-0 h-10 rounded-b-lg">
             <div className="flex items-center justify-begin col-start-1 col-end-3">
@@ -21,6 +29,7 @@ const Tooltip = ({ file, name, icon, accuracy, subcaption, caption }) => {
                     <FontAwesomeIcon
                         className="text-gray-400 hover:text-gray-400 cursor-pointer"
                         icon={icon}
+                        onClick={handleClick}
                     />
                     <span className={tooltipText}>{caption}</span>
                 </div>
@@ -36,5 +45,6 @@ Tooltip.propTypes = {
     accuracy: PropTypes.string,
     subcaption: PropTypes.string,
     caption: PropTypes.string,
+    handleClick: PropTypes.func,
 };
 export default Tooltip;

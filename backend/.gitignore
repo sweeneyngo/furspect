@@ -2,8 +2,17 @@
 .env.example
 .env.local
 .env.staging
+
+env/
 __pycache__/
+__pycache__
 cuda*
 blobfile.jpg
 
-env/
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+
+# swaps
+*.swp

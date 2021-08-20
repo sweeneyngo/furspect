@@ -8,6 +8,8 @@ class UserModel(db.Model):
     email = db.Column(db.String(64), unique=True, nullable=False),
     userSince = db.Column(db.DateTime())
 
+    files = db.relationship('FileModel', backref='user', lazy=True)
+
     def __init__(self, username, email, userSince):
         self.username = username
         self.email = email

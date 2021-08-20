@@ -19,7 +19,7 @@ def inspect():
         print(request.files['file'])
         return predict_image(request.files['file'])
 
-@app.route("/files", methods=['POST', 'GET'])
+@app.route("/files", methods=['POST', 'GET', 'PATCH'])
 @cross_origin()
 def files():
     if request.method == "POST":
@@ -47,9 +47,9 @@ def files():
             'width': int(request.form['width']),
             'height': int(request.form['height']),
             'favcount': int(request.form['favcount']),
-            'displayName': request.form['name'],
+            'displayName': request.form['displayName'],
             'hexS3': hex,
-            'color': '#000',
+            'color': request.form['color'],
             'username': 'anon',
         }
 
@@ -84,5 +84,14 @@ def files():
             contents.append(item)
 
         return {"count": len(results), "files": results, "contents": contents}
-
-
+    
+    elif request.method == "PATCH":
+        print(request.json)
+        user = FileModel.query.filter_by(hexS3=request.json['hexS3']).first()
+        print(user.favcount)
+        if user is not None:
+            user.favcount = user.favcount + 1
+            db.session.merge(user)
+            db.session.commit()
+            return {"hexS3": user.hexS3, "favcount": user.favcount, "message": "Success!"}
+        return {"message": "Failure, file not found!!"}

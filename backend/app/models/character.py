@@ -9,7 +9,6 @@ class CharacterModel(db.Model):
     files = db.relationship('FileModel', backref='character', lazy=True)
 
 
-
     def __init__(self, id_topic, name):
         self.id_topic = id_topic
         self.name = name

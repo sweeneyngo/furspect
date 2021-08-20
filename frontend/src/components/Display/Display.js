@@ -5,7 +5,7 @@ import { faMinusCircle } from '@fortawesome/free-solid-svg-icons';
 import Card from '../utils/Card/Card';
 import Tooltip from '../utils/Tooltip/Tooltip';
 
-const Display = ({ file, url, width, height, accuracy }) => {
+const Display = ({ file, url, width, height, accuracy, handleClick }) => {
     return (
         <div className="w-full shadow-md rounded-b-lg">
             <Card
@@ -22,6 +22,7 @@ const Display = ({ file, url, width, height, accuracy }) => {
                 accuracy={accuracy ? `${accuracy}` : ''}
                 subcaption=""
                 caption="delete!"
+                handleClick={handleClick}
             />
         </div>
     );
@@ -33,6 +34,7 @@ Display.propTypes = {
     width: PropTypes.number,
     height: PropTypes.number,
     accuracy: PropTypes.number,
+    handleClick: PropTypes.func,
 };
 
 export default Display;
