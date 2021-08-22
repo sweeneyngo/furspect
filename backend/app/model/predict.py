@@ -4,8 +4,11 @@ from skimage import transform
 import os
 import json
 import requests
+from dotenv import load_dotenv
+load_dotenv()
 
-url = "http://34.121.100.208:8501/v1/models/saved_model:predict"
+
+url = os.environ.get('MODEL_URL')
 
 
 def load_image(image):
