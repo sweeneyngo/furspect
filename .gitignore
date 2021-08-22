@@ -16,6 +16,9 @@ node_modules/*
 .env.local
 .env.staging
 
+<<<<<<< HEAD
+node_modules
+=======
 # mocha
 test-results/
 
@@ -29,3 +32,4 @@ validation/
 raw-img/
 saved_model/
 
+>>>>>>> 07d7e3636ff2655ff89a190287d2ce1ca1c3cc38

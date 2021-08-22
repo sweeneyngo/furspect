@@ -4,15 +4,17 @@ class FileModel(db.Model):
     __tablename__ = 'files'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String())
-    accuracy = db.Column(db.Float())
+    id_user = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    id_topic = db.Column(db.Integer, db.ForeignKey('topic.id'), nullable=False)
+    id_character = db.Column(db.Integer, db.ForeignKey('character.id'), nullable=False)
+    id_prediction = db.Column(db.Integer, db.ForeignKey('prediction.id', nullable=False))
+
     width = db.Column(db.Integer())
     height = db.Column(db.Integer())
     favcount = db.Column(db.Integer())
-    displayName = db.Column(db.String())
     hexS3 = db.Column(db.String())
     color = db.Column(db.String())
-    username = db.Column(db.String())
+    fileSince = db.Column()
 
 
     def __init__(self, name, accuracy, width, height, favcount, displayName, hexS3, color, username):
